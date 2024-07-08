@@ -1,5 +1,14 @@
 // Timothy Pamplin 2024
 
+
+
+$(window).on('keypress', function (e) {
+    if (e.which == 13) {
+        event.preventDefault();
+        newItem();
+    };
+});
+
 function newItem() {
 
     //variable declarations
@@ -22,7 +31,16 @@ function newItem() {
     li.on('dblclick', crossOut);
 
     let crossOutButton = $('<crossOutButton></crossOutButton>');
-    crossOutButton.append(document.createTextNode('X'))
-    li.append(crossOutButton)
+    crossOutButton.append(document.createTextNode('X'));
+    li.append(crossOutButton);
+
+    function deleteListitem(){
+        li.addClass('delete');
+    }
+
+    crossOutButton.on('click', deleteListitem);
+
+    $('#list').sortable();
+
 
 }
